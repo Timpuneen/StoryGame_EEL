@@ -1,0 +1,54 @@
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+body
+{
+    background: #FF5F6D ;
+    background: -webkit-linear-gradient(to right, #FFC371,#FF5F6D);
+    background: linear-gradient(to right, #FFC371, #FF5F6D);
+
+    color: white;
+    padding: 50px;
+    margin-top: 50px;
+}
+
+#message{
+    display: block;
+    border: none;
+    margin-left: -17.5px;
+
+    background: rgba(255,255, 255, .5);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    outline: none;
+    width: 100%;
+    font-size: 30px;
+}
+#message::placeholder{
+    color:rgba(255, 255, 255, .5)
+}
+
+#show{
+    display: block;
+    border: none;
+    margin-top: 15px;
+
+    background: #16BFFD;
+    background: -webkit-linear-gradient(to right, #CB3066,#16BFFD);
+    background: linear-gradient(to right,#CB3066,#16BFFD);
+    
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    outline: none;
+    width: 100%;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
+#show:hover{
+    opacity: .9;
+}
