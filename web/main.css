@@ -10,7 +10,6 @@ body
 
     color: white;
     padding: 50px;
-    margin-top: 50px;
 }
 
 #message{
@@ -51,4 +50,10 @@ body
 }
 #show:hover{
     opacity: .9;
+}
+
+#nick{
+
+    margin-top: -50px;
+    margin-left: -50px;
 }

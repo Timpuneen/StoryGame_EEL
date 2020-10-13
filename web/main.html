@@ -12,7 +12,9 @@
 
 </head>    
 <body>
+    <p id = "nick"></p>
     <input id = "message" type="text" placeholder="Enter your nick" required="" >
+
 
     <button id ="show">отправить текст</button>
     <div id="info"></div>
@@ -20,11 +22,23 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type ="text/javascript">
+    var b = new Boolean(true);
+
         async function sendText()
         {
+            if(b){
+            let login = document.getElementById('message').value;
+            document.getElementById('nick').innerHTML = login;
+            document.getElementById('message').value = '';
+            document.getElementById('message').placeholder = "Enter your answer";
+            b=false;
+            }
+            else
+            {
             let msg = document.getElementById('message').value;
             let res = await eel.getText(msg)();
             document.getElementById('info').innerHTML = res;
+            }
         }
         jQuery('#show').on('click',function(){
             sendText();
