@@ -53,7 +53,26 @@ body
 }
 
 #nick{
-
     margin-top: -50px;
     margin-left: -50px;
+}
+
+#hp{
+    margin-top: -10px;
+    margin-left: -50px;
+}
+
+#close{
+    background-color: pink;
+    margin-top: -50px;
+    margin-right: -52px;
+    float: right;
+}
+
+#mute{
+    border-radius: 15px;
+    background-color: pink;
+    margin-top: -50px;
+    margin-right: -25px;
+    float: right;
 }

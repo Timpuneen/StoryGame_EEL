@@ -12,23 +12,37 @@
 
 </head>    
 <body>
+    <button id ="mute">♬</button>
+    <button id ="close">✘</button>
     <p id = "nick"></p>
+    <p id = "hp"></p>
     <input id = "message" type="text" placeholder="Enter your nick" required="" >
 
 
     <button id ="show">отправить текст</button>
     <div id="info"></div>
+
+    <img id = "yeah">
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type ="text/javascript">
     var b = new Boolean(true);
-
+    var audio = new Audio("phon.mp3");
+    var playing = new Boolean(false);
+    var hp = 3;
+    audio.loop = true;
+    audio.volume = 0.1;
         async function sendText()
         {
+            if(document.getElementById('message').value!=0)
+            {
             if(b){
+            audio.play();
+            playing = true;
             let login = document.getElementById('message').value;
             document.getElementById('nick').innerHTML = login;
+            document.getElementById('hp').innerHTML = hp;
             document.getElementById('message').value = '';
             document.getElementById('message').placeholder = "Enter your answer";
             b=false;
@@ -38,10 +52,39 @@
             let msg = document.getElementById('message').value;
             let res = await eel.getText(msg)();
             document.getElementById('info').innerHTML = res;
+            document.getElementById('yeah').src = "hi.png"
+            }
             }
         }
+        async function mutee()
+        {
+            if(!b){
+            if(playing){
+                playing = false;
+                audio.muted = true;
+            }
+            else {
+                playing = true;
+                audio.muted = false;
+            }
+            }
+        }
+
+        async function zakrit()
+        {
+            window.opener = self;
+            window.close();
+        }
+
+
         jQuery('#show').on('click',function(){
             sendText();
+        });
+        jQuery('#mute').on('click',function(){
+            mutee();
+        });
+        jQuery('#close').on('click',function(){
+            zakrit();
         });
     </script>
 </body>
