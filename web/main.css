@@ -53,11 +53,13 @@ body
 }
 
 #nick{
+    font-size: 25px;
     margin-top: -50px;
     margin-left: -50px;
 }
 
 #hp{
+    font-size: 25px;
     margin-top: -10px;
     margin-left: -50px;
 }

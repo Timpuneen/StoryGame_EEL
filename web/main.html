@@ -16,7 +16,7 @@
     <button id ="close">✘</button>
     <p id = "nick"></p>
     <p id = "hp"></p>
-    <input id = "message" type="text" placeholder="Enter your nick" required="" >
+    <input id = "message" type="text" placeholder="Enter your nick(2-20)" required="" >
 
 
     <button id ="show">отправить текст</button>
@@ -30,29 +30,56 @@
     var b = new Boolean(true);
     var audio = new Audio("phon.mp3");
     var playing = new Boolean(false);
-    var hp = 3;
+    var hp = "3❦";
     audio.loop = true;
     audio.volume = 0.1;
         async function sendText()
         {
-            if(document.getElementById('message').value!=0)
+            if(document.getElementById('message').value=="exit")
             {
-            if(b){
+                window.opener = self;
+                window.close();
+            }
+            else if(document.getElementById('message').value=="restart")
+            {
+                await eel.restart()();
+                location.reload();
+            }
+            else
+            {
+            if(document.getElementById('message').value!=0)
+            { 
+            if(b){  
+            if(document.getElementById('message').value.length>=2&&document.getElementById('message').value.length<=20){    
             audio.play();
             playing = true;
             let login = document.getElementById('message').value;
+            await eel.setNick(login)();
             document.getElementById('nick').innerHTML = login;
             document.getElementById('hp').innerHTML = hp;
             document.getElementById('message').value = '';
             document.getElementById('message').placeholder = "Enter your answer";
+            let res = await eel.getText('')();
+            document.getElementById('info').innerHTML = "<hr/>"+res;
+            let img = await eel.getImage()();
+            document.getElementById('yeah').src = img;
             b=false;
+            }
+            else{
+            document.getElementById('message').value = '';
+            }
             }
             else
             {
             let msg = document.getElementById('message').value;
             let res = await eel.getText(msg)();
-            document.getElementById('info').innerHTML = res;
-            document.getElementById('yeah').src = "hi.png"
+            document.getElementById('message').value = '';
+            document.getElementById('info').innerHTML = "<hr/>"+res;
+            let img = await eel.getImage()();
+            document.getElementById('yeah').src = img;
+            let hp = await eel.getHp()();
+            document.getElementById('hp').innerHTML = hp;
+            }
             }
             }
         }
