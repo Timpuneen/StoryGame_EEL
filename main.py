@@ -163,7 +163,7 @@ def getText(textik):
                 health -=1       
         elif(iteracy==4):
             dobav = True
-            banan = texts[10]
+            banan = texts[57]
             if(textik=="TIMA"):
                 right +=1
                 vozvrat = texts[9]
@@ -175,25 +175,13 @@ def getText(textik):
         elif(iteracy==5):
             dobav = True
             banan = texts[15]
-            if(textik=="Audi"):
+            if(textik=="RUR\'U\'"):
                 right+=1
-                vozvrat = texts[13]
-            elif(textik == "mers"):
-                rightNot +=1
-                health-=1
-                vozvrat = texts[14]
-            elif(textik=="bmw"):
-                rightNot +=1
-                if(health>=2):
-                    health-=2
-                    vozvrat = texts[11]
-                else:
-                    health=0
-                    vozvrat = texts[12] 
+                vozvrat = texts[59]
             else:
-                rightNot +=1
-                health -=1
-                vozvrat = texts[over]  
+                rightNot+=1
+                health-=1
+                vozvrat  = texts[58]
 
         elif(iteracy==6):
             dobav = True
@@ -333,7 +321,7 @@ def getText(textik):
                 vozvrat = texts[52]
         elif(iteracy==19):
             dobav = True
-            banan = texts[57]
+            banan = texts[10]
             if(textik=='ампелография'):
                 right+=1
                 vozvrat = texts[55]
@@ -348,13 +336,26 @@ def getText(textik):
         elif(iteracy==20):
             dobav = True
             banan = texts[60]
-            if(textik=="RUR\'U\'"):
+            if(textik=="Audi"):
                 right+=1
-                vozvrat = texts[59]
-            else:
-                rightNot+=1
+                vozvrat = texts[13]
+            elif(textik == "mers"):
+                rightNot +=1
                 health-=1
-                vozvrat  = texts[58]
+                vozvrat = texts[14]
+            elif(textik=="bmw"):
+                rightNot +=1
+                if(health>=2):
+                    health-=2
+                    vozvrat = texts[11]
+                else:
+                    health=0
+                    vozvrat = texts[12] 
+            else:
+                rightNot +=1
+                health -=1
+                vozvrat = texts[over] 
+
         elif(iteracy==21):
             dobav = True
             banan = texts[63]
