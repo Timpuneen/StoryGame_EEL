@@ -27,10 +27,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type ="text/javascript">
+    var otherplay = new Boolean(false);
     var b = new Boolean(true);
+    var GO = new Boolean(true);
     var audio = new Audio("phon.mp3");
+    var audioach = new Audio("ach.mp3");
     var playing = new Boolean(false);
-    var hp = "3❦";
+    var hp = "5❦";
+    audioach.loop = true;
+    audio.volume = 0.1;
     audio.loop = true;
     audio.volume = 0.1;
         async function sendText()
@@ -56,7 +61,6 @@
             let login = document.getElementById('message').value;
             await eel.setNick(login)();
             document.getElementById('nick').innerHTML = login;
-            document.getElementById('hp').innerHTML = hp;
             document.getElementById('message').value = '';
             document.getElementById('message').placeholder = "Enter your answer";
             let res = await eel.getText('')();
@@ -71,20 +75,54 @@
             }
             else
             {
+            GO = true;
+            if(document.getElementById('message').value=='skip'){
+                if(document.getElementById('info').innerHTML.includes("Сектор риск")){
+                    let healthHelp = parseInt(hp);
+                    if(healthHelp<3){
+                        GO = false;
+                        document.getElementById('message').value = '';
+                    }
+                }
+            }   
+            if(GO == true){
             let msg = document.getElementById('message').value;
             let res = await eel.getText(msg)();
+            if(otherplay==true){
+                audioach.muted = true;
+                otherplay = false;
+                if(playing){
+                    audio.muted = false;
+                }
+                else{
+                    audio.muted = true;
+                }
+            }    
+            if(res.includes("Отгадай название песни")){
+                otherplay = true;
+                audioach.play();
+                audio.muted = true;
+            }
             document.getElementById('message').value = '';
             document.getElementById('info').innerHTML = "<hr/>"+res;
             let img = await eel.getImage()();
             document.getElementById('yeah').src = img;
-            let hp = await eel.getHp()();
+            
+            let iter = await eel.getIteracy()();
+            if(iter>2){
+            hp = await eel.getHp()();
             document.getElementById('hp').innerHTML = hp;
+            }
+
+            }
+
             }
             }
             }
         }
         async function mutee()
         {
+            if(otherplay==false){
             if(!b){
             if(playing){
                 playing = false;
@@ -93,6 +131,7 @@
             else {
                 playing = true;
                 audio.muted = false;
+            }
             }
             }
         }

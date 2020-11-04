@@ -2,3 +2,4 @@
 [1021/123907.033:ERROR:file_io.cc(135)] WriteFile: Идет закрытие канала. (0xE8)
 [1023/183341.143:ERROR:file_io.cc(135)] WriteFile: Идет закрытие канала. (0xE8)
 [1025/141856.381:ERROR:file_io.cc(135)] WriteFile: Идет закрытие канала. (0xE8)
+[1103/225538.476:ERROR:file_io.cc(135)] WriteFile: Идет закрытие канала. (0xE8)

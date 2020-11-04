@@ -4,13 +4,14 @@ import eel
 right = 0
 rightNot = 0
 
+resTime = None
 StartTime = None
 WinLose = None
 nickName = None 
 results = False 
 block = False 
 iteracy = 0
-health = 3
+health = 5
 images=[]
 texts=[]
 vozvrat = None
@@ -38,6 +39,7 @@ del f
 
 @eel.expose
 def restart():
+    global resTime
     global StartTime
     global right
     global rightNot
@@ -51,6 +53,7 @@ def restart():
     global health
     global iteracy
 
+    resTime = None
     StartTime = None
     right = 0
     rightNot = 0
@@ -62,12 +65,17 @@ def restart():
     vozvrat = None
     block = False
     iteracy = 0
-    health = 3
+    health = 5
 
 @eel.expose
 def setNick(txtn):
     global nickName
     nickName = txtn
+
+@eel.expose
+def getIteracy():
+    global iteracy
+    return iteracy
 
 def normalTime(seconds):
     sekunds = 0
@@ -86,6 +94,7 @@ def normalTime(seconds):
 
 @eel.expose
 def getText(textik):
+    global resTime
     global StartTime
     global rightNot
     global right
@@ -112,7 +121,7 @@ def getText(textik):
             Ты {y}<br/>
             Твое время - {z}<br/>
             Правильных - {a}, не правильных - {b}<br/>
-            restart/exit""".format(x = nickName,y = WinLose, z = normalTime(int(time.time() - StartTime)), a = right, b = rightNot)
+            restart/exit""".format(x = nickName,y = WinLose, z = resTime, a = right, b = rightNot)
         else:
             vozvrat = texts[by]  
             
@@ -164,28 +173,227 @@ def getText(textik):
                 vozvrat = texts[8]    
 
         elif(iteracy==5):
+            dobav = True
+            banan = texts[15]
+            if(textik=="Audi"):
+                right+=1
+                vozvrat = texts[13]
+            elif(textik == "mers"):
+                rightNot +=1
+                health-=1
+                vozvrat = texts[14]
+            elif(textik=="bmw"):
+                rightNot +=1
+                if(health>=2):
+                    health-=2
+                    vozvrat = texts[11]
+                else:
+                    health=0
+                    vozvrat = texts[12] 
+            else:
+                rightNot +=1
+                health -=1
+                vozvrat = texts[over]  
+
+        elif(iteracy==6):
+            dobav = True
+            banan = texts[19]
+            if(textik=="-7,1"or textik=="1,-7"):
+                right+=1
+                vozvrat = texts[16]
+            elif(textik=='1'or textik=='-7'):
+                right+=1
+                vozvrat = texts[17]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[18]
+        elif(iteracy==7):
+            dobav = True
+            banan = texts[22]
+            if(textik=='33'):
+                right+=1
+                vozvrat = texts[20]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat=texts[21]
+        elif(iteracy==8):
+            dobav = True
+            banan = texts[25]
+            if(textik=='1'):
+                right+=1
+                vozvrat = texts[23]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[24]
+        elif(iteracy==9):
+            dobav = True
+            banan = texts[28]
+            if(textik=='хоба'):
+                right+=1
+                vozvrat = texts[26]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[27]
+        elif(iteracy==10):
+            dobav = True
+            banan = texts[31]
+            if(textik=='3'):
+                right+=1
+                vozvrat = texts[30]
+            elif(textik=='2'or textik =='1'):
+                rightNot+=1
+                health-=1
+                vozvrat = texts[29]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[over]
+        elif(iteracy==11):
+            dobav = True
+            banan = texts[34]
+            if(textik=="OLD TOWN ROAD"):
+                right+=1
+                vozvrat = texts[32]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[33]
+        elif(iteracy==12):       
+            dobav = True
+            banan = texts[37]
+            if(textik=='Timpuheen'):
+                right+=1
+                vozvrat = texts[35] 
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[36]
+        elif(iteracy==13):
+            dobav = True
+            banan = texts[39]
+            right+=1
+            vozvrat = texts[38]            
+        elif(iteracy==14):
+            dobav = True
+            banan = texts[42]
+            if(textik=='256'):
+                right+=1
+                vozvrat = texts[40]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[41]
+        elif(iteracy==15):
+            dobav = True
+            banan = texts[44]
+            if(textik=='avatar'or textik=='gravityFalls'or textik=='naruto'):
+                right+=1
+                vozvrat = texts[43]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[over]
+        elif(iteracy==16):
+            dobav = True
+            banan = texts[47]
+            if(textik=='elite'):
+                right+=1
+                vozvrat = texts[46]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[45]
+        elif(iteracy==17):
+            dobav = True
+            banan = texts[50]
+            if(textik=='в правде'):
+                right+=1
+                vozvrat = texts[49]
+            elif(textik=='в единстве' or textik=='в дружбе'):
+                rightNot+=1
+                health-=1
+                vozvrat = texts[48]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[over] 
+        elif(iteracy==18):
+            dobav = True
+            banan = texts[53]
+            if(textik=='ВЗРЫВ'):
+                right+=1
+                vozvrat = texts[51]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[52]
+        elif(iteracy==19):
+            dobav = True
+            banan = texts[57]
+            if(textik=='ампелография'):
+                right+=1
+                vozvrat = texts[55]
+                health+=1
+            elif(textik=='skip'and health>2):
+                health-=2            
+                vozvrat = texts[54]
+            else:
+                rightNot+=1
+                health=0
+                vozvrat=texts[56]  
+        elif(iteracy==20):
+            dobav = True
+            banan = texts[60]
+            if(textik=="RUR\'U\'"):
+                right+=1
+                vozvrat = texts[59]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat  = texts[58]
+        elif(iteracy==21):
+            dobav = True
+            banan = texts[63]
+            if(textik=="first 2 layers"):
+                right+=1
+                vozvrat = texts[61]
+            else:
+                rightNot+=1
+                health-=1
+                vozvrat = texts[62]
+        elif(iteracy==22):
             block = True
             dobav = True
             banan = texts[win]
             WinLose = 'победил'
             results = True
-            if(textik=="Audi"):
+            resTime = normalTime(int(time.time() - StartTime))
+            if(textik=='Тони'):
                 right+=1
-                vozvrat = texts[12]
-            elif(textik =="bmw" or textik == "mers"):
-                rightNot +=1
+                vozvrat = texts[66]
+            elif(textik=='Стив'):
+                rightNot+=1
                 health-=1
-                vozvrat = texts[11]
+                vozvrat = texts[64]
+            elif(textik=='Бенедикт'):
+                rightNot+=1
+                health-=1
+                vozvrat = texts[65] 
             else:
                 rightNot +=1
                 health -=1
-                vozvrat = texts[over]  
+                vozvrat = texts[over]             
 
         else:
             return "Ты чего наделал?"
                                
         if(health==0):
             results = True
+            resTime = normalTime(int(time.time() - StartTime))
             block = True
             vozvrat += texts[lose]
             WinLose = 'проиграл'
