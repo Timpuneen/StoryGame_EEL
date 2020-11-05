@@ -4,6 +4,9 @@ import eel
 right = 0
 rightNot = 0
 
+sendImg = False
+imageRelease = None
+healthRelease = False
 resTime = None
 StartTime = None
 WinLose = None
@@ -39,6 +42,9 @@ del f
 
 @eel.expose
 def restart():
+    global sendImg 
+    global imageRelease
+    global healthRelease
     global resTime
     global StartTime
     global right
@@ -53,6 +59,9 @@ def restart():
     global health
     global iteracy
 
+    sendImg = False
+    imageRelease = None
+    healthRelease = False
     resTime = None
     StartTime = None
     right = 0
@@ -74,8 +83,8 @@ def setNick(txtn):
 
 @eel.expose
 def getIteracy():
-    global iteracy
-    return iteracy
+    global healthRelease
+    return healthRelease
 
 def normalTime(seconds):
     sekunds = 0
@@ -94,6 +103,9 @@ def normalTime(seconds):
 
 @eel.expose
 def getText(textik):
+    global sendImg
+    global imageRelease
+    global healthRelease
     global resTime
     global StartTime
     global rightNot
@@ -116,6 +128,8 @@ def getText(textik):
 
     if(results==True):
         results = False
+        sendImg = True
+        imageRelease = "results.gif"
         if(textik=="results"):
             vozvrat = """Вот твои результаты {x}:<br/>
             Ты {y}<br/>
@@ -139,6 +153,9 @@ def getText(textik):
                 vozvrat = texts[by]
         elif(iteracy==2):
             if(textik=='start'):
+                sendImg = True
+                imageRelease = images[1]
+                healthRelease = True
                 StartTime = time.time()
                 vozvrat = texts[4]  
             elif(textik=='leave'):
@@ -160,7 +177,12 @@ def getText(textik):
             else: 
                 rightNot +=1
                 vozvrat = texts[over]
-                health -=1       
+                health -=1 
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[2]
+
         elif(iteracy==4):
             dobav = True
             banan = texts[57]
@@ -171,6 +193,10 @@ def getText(textik):
                 rightNot +=1
                 health-=1
                 vozvrat = texts[8]    
+            
+            if(health>0):
+                sendImg = True
+                imageRelease = images[3]     
 
         elif(iteracy==5):
             dobav = True
@@ -183,10 +209,15 @@ def getText(textik):
                 health-=1
                 vozvrat  = texts[58]
 
+            if(health>0):
+                sendImg = True
+                imageRelease = images[4]                
+
         elif(iteracy==6):
             dobav = True
             banan = texts[19]
             if(textik=="-7,1"or textik=="1,-7"):
+                health+=1
                 right+=1
                 vozvrat = texts[16]
             elif(textik=='1'or textik=='-7'):
@@ -196,6 +227,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[18]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[5]
+
         elif(iteracy==7):
             dobav = True
             banan = texts[22]
@@ -206,6 +242,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat=texts[21]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[6]
+
         elif(iteracy==8):
             dobav = True
             banan = texts[25]
@@ -216,6 +257,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[24]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[7]
+
         elif(iteracy==9):
             dobav = True
             banan = texts[28]
@@ -226,6 +272,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[27]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[8]
+
         elif(iteracy==10):
             dobav = True
             banan = texts[31]
@@ -240,6 +291,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[over]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[9]
+
         elif(iteracy==11):
             dobav = True
             banan = texts[34]
@@ -250,21 +306,36 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[33]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[10]
+
         elif(iteracy==12):       
             dobav = True
             banan = texts[37]
-            if(textik=='Timpuheen'):
+            if(textik=='Гюнтер'):
                 right+=1
                 vozvrat = texts[35] 
             else:
                 rightNot+=1
                 health-=1
                 vozvrat = texts[36]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[11]
+
         elif(iteracy==13):
             dobav = True
             banan = texts[39]
             right+=1
-            vozvrat = texts[38]            
+            vozvrat = texts[38]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[12]
+
         elif(iteracy==14):
             dobav = True
             banan = texts[42]
@@ -275,6 +346,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[41]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[13]  
+
         elif(iteracy==15):
             dobav = True
             banan = texts[44]
@@ -285,6 +361,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[over]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[14]
+
         elif(iteracy==16):
             dobav = True
             banan = texts[47]
@@ -295,6 +376,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[45]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[15]
+
         elif(iteracy==17):
             dobav = True
             banan = texts[50]
@@ -309,6 +395,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[over] 
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[16]
+
         elif(iteracy==18):
             dobav = True
             banan = texts[53]
@@ -319,6 +410,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[52]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[17]
+
         elif(iteracy==19):
             dobav = True
             banan = texts[10]
@@ -332,7 +428,12 @@ def getText(textik):
             else:
                 rightNot+=1
                 health=0
-                vozvrat=texts[56]  
+                vozvrat=texts[56]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[18]
+
         elif(iteracy==20):
             dobav = True
             banan = texts[60]
@@ -354,7 +455,11 @@ def getText(textik):
             else:
                 rightNot +=1
                 health -=1
-                vozvrat = texts[over] 
+                vozvrat = texts[over]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[19]
 
         elif(iteracy==21):
             dobav = True
@@ -366,6 +471,11 @@ def getText(textik):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[62]
+
+            if(health>0):
+                sendImg = True
+                imageRelease = images[20]              
+
         elif(iteracy==22):
             block = True
             dobav = True
@@ -375,24 +485,27 @@ def getText(textik):
             resTime = normalTime(int(time.time() - StartTime))
             if(textik=='Тони'):
                 right+=1
-                vozvrat = texts[66]
+                vozvrat = texts[65]
             elif(textik=='Стив'):
                 rightNot+=1
                 health-=1
                 vozvrat = texts[64]
-            elif(textik=='Бенедикт'):
-                rightNot+=1
-                health-=1
-                vozvrat = texts[65] 
             else:
                 rightNot +=1
                 health -=1
-                vozvrat = texts[over]             
+                vozvrat = texts[over]
+        
+            if(health>0):
+                sendImg = True
+                imageRelease = "win.png"                              
 
         else:
             return "Ты чего наделал?"
-                               
+
+
         if(health==0):
+            sendImg = True
+            imageRelease = "lose.png"
             results = True
             resTime = normalTime(int(time.time() - StartTime))
             block = True
@@ -409,7 +522,13 @@ def getText(textik):
 
 @eel.expose
 def getImage():
-    return images[0]
+    global sendImg
+    global imageRelease
+    if(sendImg==True):
+        sendImg = False
+        return 'images/'+imageRelease
+    else:
+        return 'kinaNeBudet'    
 
 @eel.expose
 def getHp():
@@ -417,4 +536,4 @@ def getHp():
     return str(health)+'❦'   
     
 eel.init("web")
-eel.start("main.html", size=(800,850))
+eel.start("main.html", size=(800,900))

@@ -20,9 +20,9 @@
 
 
     <button id ="show">отправить текст</button>
-    <div id="info"></div>
+    <div id="info" align="center"></div>
 
-    <img id = "yeah">
+    <img id = "yeah" >
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -64,9 +64,14 @@
             document.getElementById('message').value = '';
             document.getElementById('message').placeholder = "Enter your answer";
             let res = await eel.getText('')();
-            document.getElementById('info').innerHTML = "<hr/>"+res;
+            document.getElementById('info').innerHTML = "<hr/>"+res+"<br/>";
             let img = await eel.getImage()();
+            if(img =="kinaNeBudet"){
+                document.getElementById('yeah').src = "main.gif";
+            }
+            else{
             document.getElementById('yeah').src = img;
+            }
             b=false;
             }
             else{
@@ -104,12 +109,16 @@
                 audio.muted = true;
             }
             document.getElementById('message').value = '';
-            document.getElementById('info').innerHTML = "<hr/>"+res;
+            document.getElementById('info').innerHTML = "<hr/>"+res+"<br/>";
             let img = await eel.getImage()();
+            if(img =="kinaNeBudet"){
+                document.getElementById('yeah').src = "main.gif";
+            }
+            else{
             document.getElementById('yeah').src = img;
-            
-            let iter = await eel.getIteracy()();
-            if(iter>2){
+            }
+            let hpRelease = await eel.getIteracy()();
+            if(hpRelease==true){
             hp = await eel.getHp()();
             document.getElementById('hp').innerHTML = hp;
             }

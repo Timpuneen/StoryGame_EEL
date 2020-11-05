@@ -1,2 +1,21 @@
-hi.png|
-hop.jpg|
+пустой пункт|
+python.png|
+stereo.png|
+pifpaf.png|
+urav.png|
+morze.png|
+figure.png|
+klava.png|
+lucky.png|
+OTR.png|
+gunter.png|
+strun.png|
+mine.png|
+vibor.png|
+1337.png|
+F=ma.png|
+iskusstvo.png|
+risk.png|
+AUDI.png|
+f2l.png|
+theBest.png|
