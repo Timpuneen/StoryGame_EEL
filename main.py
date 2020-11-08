@@ -354,7 +354,7 @@ def getText(textik):
         elif(iteracy==15):
             dobav = True
             banan = texts[44]
-            if(textik=='avatar'or textik=='gravityFalls'or textik=='naruto'):
+            if(textik=='CS:GO'or textik=='Fortnite'or textik=='Valorant'):
                 right+=1
                 vozvrat = texts[43]
             else:
@@ -536,4 +536,4 @@ def getHp():
     return str(health)+'❦'   
     
 eel.init("web")
-eel.start("main.html", size=(800,900))
+eel.start("main.html", size=(820,920))
